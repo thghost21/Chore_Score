@@ -17,4 +17,4 @@ CREATE TABLE chores(
 INSERT INTO 
 chores(name, description)
 VALUES("Walk the raccoons", "Don't go to the dog park, we are banned for life.");
-SELECT * FROM chores;
+SELECT * FROM chores WHERE id = 2;
