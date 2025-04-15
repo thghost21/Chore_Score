@@ -25,4 +25,27 @@ public class ChoresService
     }
     return chore;
   }
+
+  public void DeleteChore(int choreId)
+  {
+    _repository.DeleteChore(choreId);
+
+  }
+
+  internal Chore EditChore(int choreId, Chore choreData)
+  {
+    Chore chore = GetChoreById(choreId);
+    chore.Description = choreData.Description;
+    chore.Name = choreData.Name;
+    chore.IsComplete = choreData.IsComplete;
+
+    _repository.EditChore(chore);
+    return chore;
+  }
+
+  internal Chore CreateChore(Chore choreData)
+  {
+    Chore chore = _repository.CreateChore(choreData);
+    return chore;
+  }
 }

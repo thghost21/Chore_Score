@@ -27,12 +27,54 @@ public class ChoresController : ControllerBase
     }
   }
   [HttpGet("{choreId}")]
-  public ActionResult<Chore> getChoreById(int choreId)
+  public ActionResult<Chore> GetChoreById(int choreId)
   {
     try
     {
       Chore chore = _choresService.GetChoreById(choreId);
       return chore;
+    }
+    catch (Exception error)
+    {
+
+      return BadRequest(error.Message);
+    }
+  }
+  [HttpDelete("{choreId}")]
+  public ActionResult<Chore> DeleteChore(int choreId)
+  {
+    try
+    {
+      _choresService.DeleteChore(choreId);
+      return Ok("Chore Deleted");
+    }
+    catch (Exception error)
+    {
+
+      return BadRequest(error.Message);
+    }
+  }
+  [HttpPost]
+  public ActionResult<Chore> CreateChore([FromBody] Chore choreData)
+  {
+    try
+    {
+      Chore chore = _choresService.CreateChore(choreData);
+      return Ok(chore);
+    }
+    catch (Exception error)
+    {
+
+      return BadRequest(error.Message);
+    }
+  }
+  [HttpPut("{choreId}")]
+  public ActionResult<Chore> EditChore([FromBody] Chore choreData, int choreId)
+  {
+    try
+    {
+      Chore chore = _choresService.EditChore(choreId, choreData);
+      return Ok(chore);
     }
     catch (Exception error)
     {
